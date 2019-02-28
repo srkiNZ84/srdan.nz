@@ -1,20 +1,23 @@
 <html>
   <head>
     <title>Srdan Geek NZ</title>
+    <script>
+      function updateResults(){
+        console.log("Updating results paragraph");
+        var userText = document.getElementById("myTextBox").value;
+        document.getElementById("myResultsBox").innerHTML = "Here it is: " + userText;
+      }
+    </script>
   </head>
   <body>
-    <p>Foo</p>
-    <br />
-    <p>Bar</p>
-    <br />
-    <p>Baz</p>
-    <br />
     <p>Content:</p>
     <br />
     <textarea rows="5" columns="30" >
     </textarea>
     <br />
-    <button type="button">Save data</button>
+    <button onclick="updateResults()" type="button">Save data</button>
+    <br />
+    <p id="myResultsBox"></p>
   </body>
 </html>
 
