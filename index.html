@@ -5,7 +5,18 @@
       function updateResults(){
         console.log("Updating results paragraph");
         var userText = document.getElementById("myTextBox").value;
-        document.getElementById("myResultsBox").innerHTML = "Here it is: " + userText;
+        //document.getElementById("myResultsBox").innerHTML = "Here it is: " + userText;
+        var myData = { "document": userText };
+        var request = new XMLHttpRequest();
+        var postURL = "https://us-central1-faas-helloworld.cloudfunctions.net/http";
+        request.open('POST', postURL, true);
+        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        request.onreadystatechange = function() {//Call a function when the state changes.
+          if(request.readyState == 4 && request.status == 200) {
+            alert(request.responseText);
+          }
+        }
+        request.send(myData);
       }
     </script>
   </head>
