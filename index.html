@@ -13,6 +13,7 @@
             //document.getElementById("postsDisplay").innerHTML = request.responseText;
             var blogPosts = request.response;
             for(var i = 0; i < blogPosts.length; i++){
+              console.log("processing blog post " + i + " content is " + blogPosts[i].content);
               var listItem = document.createElement('li');
               listItem.textContent = blogPosts[i].content;
               document.getElementById("postsDisplay").appendChild = listItem;
