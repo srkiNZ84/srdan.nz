@@ -3,7 +3,18 @@
     <title>Srdan Geek NZ</title>
     <script>
       function displayPosts(){
-        console.log("TODO: Get Posts from API");
+        console.log("Getting Posts from API");
+        var request = new XMLHttpRequest();
+        var getPostsURL = "https://us-central1-faas-helloworld.cloudfunctions.net/getposts";
+        request.open('GET', getPostsURL, true);
+        request.setRequestHeader('Content-type', 'application/json;charset=UTF-8');
+        request.onreadystatechange = function() {
+          if(request.readyState == 4 && request.status == 200) {
+            document.getElementById("postsDisplay").innerHTML = request.responseText;
+          }
+        }
+        request.send();
+
         console.log("TODO: Update HTML to display posts");
       }
 
