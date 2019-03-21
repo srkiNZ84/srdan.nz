@@ -10,9 +10,15 @@
         request.setRequestHeader('Content-type', 'application/json;charset=UTF-8');
         request.onreadystatechange = function() {
           if(request.readyState == 4 && request.status == 200) {
-            document.getElementById("postsDisplay").innerHTML = request.responseText;
+            //document.getElementById("postsDisplay").innerHTML = request.responseText;
+            var blogPosts = request.response;
+            for(var i = 0; i < blogPosts.length; i++){
+              var listItem = document.createElement('li');
+              listItem.textContent = blogPosts[i].content;
+              document.getElementById("postsDisplay").appendChild = listItem;
           }
         }
+        request.responseType = 'json';
         request.send();
 
         console.log("TODO: Update HTML to display posts");
@@ -38,7 +44,7 @@
   <body onload="displayPosts()">
     <p>Content:</p>
     <br />
-    <p id="postsDisplay"></p>
+    <ul id="postsDisplay"></ul>
     <br />
     <p>Add new:</p>
     <textarea id="myTextBox" rows="5" columns="30" >
