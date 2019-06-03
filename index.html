@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Srdan Geek NZ</title>
+    <title>Chooser Blog Engine</title>
     <script>
       function displayPosts(){
         console.log("Getting Posts from API");
@@ -24,14 +24,13 @@
         }
         request.responseType = 'json';
         request.send();
-
-        console.log("TODO: Update HTML to display posts");
       }
 
       function addPost(){
-        console.log("Updating results paragraph");
+        console.log("Adding new blog post");
         var userText = document.getElementById("myTextBox").value;
-        var myData = { "document": userText };
+        var subjectText = document.getElementById("subjectTextBox").value;
+        var myData = { "subject": subjectText, "document": userText };
         var request = new XMLHttpRequest();
         var postURL = "https://us-central1-faas-helloworld.cloudfunctions.net/addpost";
         request.open('POST', postURL, true);
@@ -50,8 +49,10 @@
     <br />
     <ul id="postsDisplay"></ul>
     <br />
-    <p>Add new:</p>
-    <textarea id="myTextBox" rows="5" columns="30" >
+    <p>Add new post:</p>
+    <textarea id="subjectTextBox" rows="1" columns="30">
+    </textarea>
+    <textarea id="myTextBox" rows="30" columns="30" >
     </textarea>
     <br />
     <button onclick="addPost()" type="button">Add Post</button>
